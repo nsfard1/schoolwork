@@ -1,0 +1,6 @@
+P a.out main.c header.h
+T test12.in  test12.out 1000 -a -b -c
+P b.out foo.c
+T test13.in  test13.out 1000 -a
+P c.out main2.c
+T test14.in  test14.out 1000 -cat

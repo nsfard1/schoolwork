@@ -1,0 +1,29 @@
+#!/bin/bash
+
+trace Http.pcap > mytest.out
+diff -B -w mytest.out Http.out
+
+trace UDPfile.pcap > mytest.out
+diff -B -w mytest.out UDPfile.out
+
+trace TCP_bad_checksum.pcap > mytest.out
+diff -B -w mytest.out TCP_bad_checksum.out
+
+trace smallTCP.pcap > mytest.out
+diff -B -w mytest.out smallTCP.out
+
+trace PingTest.pcap > mytest.out
+diff -B -w mytest.out PingTest.out
+
+trace largeMix.pcap > mytest.out
+diff -B -w mytest.out largeMix.out
+
+trace largeMix2.pcap > mytest.out
+diff -B -w mytest.out largeMix2.out
+
+trace IP_bad_checksum.pcap > mytest.out
+diff -B -w mytest.out IP_bad_checksum.out
+
+trace ArpTest.pcap > mytest.out
+diff -B -w mytest.out ArpTest.out
+

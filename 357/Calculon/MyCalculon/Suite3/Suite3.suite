@@ -1,0 +1,2 @@
+P make.out make.c
+T test8.in test8.out 1000

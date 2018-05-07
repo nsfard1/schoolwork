@@ -1,0 +1,4 @@
+Hello, this is a test of the new LZW compressor.  This test should not result
+in a refresh of the dictionary, though we will probably get codes that are
+at least 9 bits from it, which is a good validation of the basic LZW function,
+For a short program, this thing can cause a lot of sleepless nights

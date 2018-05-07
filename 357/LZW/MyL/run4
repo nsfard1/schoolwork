@@ -1,0 +1,27 @@
+#!/bin/bash
+
+printf "Running Test on 1MB file\n"
+
+for ((i = $1; i <= $2; i += 1))
+do
+   rm -f test.temp
+
+   printf "Compressing testfile with recycle code: $i\n"
+   LZWCmp -R $i largeTest.out < /dev/null
+
+   printf "Running reference LZW with recycle code : $i\n"
+   time SafeRun -o2000000 -t970 -T4000 LZWExp -R $i < largeTest.out.Z > test.temp
+
+   printf "Running my LZW with recycle code: $i\n"
+   time SafeRun -o2000000 -t970 -T4000 LZWExp -R $i < largeTest.out.Z > test.temp
+  
+   echo $?
+   printf "\n"
+
+   printf "Diffing outputs:\n"
+   diff test.temp largeTest.out > diffedOut
+
+   cat diffedOut
+
+   printf "\n\n"
+done

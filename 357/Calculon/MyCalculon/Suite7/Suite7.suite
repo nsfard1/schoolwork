@@ -1,0 +1,4 @@
+P a.out compile.c
+T test11.in test11.out 1000
+P b.out compile.c
+T test11.in test11.out 1000

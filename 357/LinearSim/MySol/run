@@ -1,0 +1,39 @@
+for ((i = $1; i < $2; i++))
+do
+   for ((s = $3; s <= $4; s++)) 
+   do
+      printf "CELLS: %d, STEP: %d\n" "$i" "$s"
+      printf "MyLinearSim...\n"
+      printf "./SafeRun -o400000 -t700 -T6000 -p100 ./LinearSim C$i S$s L$5 R$6 1>myOut 2>myErr\n"
+      ./SafeRun -o400000 -t700 -T6000 -p100 ./LinearSim "C$i" "S$s" "L$5" "R$6" 1>myOut 2>myErr
+
+      echo $?
+
+      sort myOut > SortedMyOut
+      sort myErr > SortedMyErr
+
+      cd ../Sol
+      printf "SolLinearSim...\n"
+      printf "./SafeRun -o400000 -t700 -T6000 -p100 ./LinearSim C$i S$s L$5 R$6 1>myOut 2>myErr\n"
+      ./SafeRun -o400000 -t700 -T6000 -p100 ./LinearSim "C$i" "S$s" "L$5" "R$6" 1>myOut 2>myErr
+
+      echo $?
+
+      sort myOut > SortedMyOutSol
+      sort myErr > SortedMyErrSol
+
+      printf "\nOUTPUT:\n"
+      diff SortedMyOutSol ../MySol/SortedMyOut
+
+      printf "\nERROR:\n"
+      diff SortedMyErrSol ../MySol/SortedMyErr
+
+      rm SortedMyOutSol
+      rm SortedMyErrSol
+      cd ../MySol
+      rm SortedMyOut
+      rm SortedMyErr
+
+      printf "\n\n"
+   done
+done

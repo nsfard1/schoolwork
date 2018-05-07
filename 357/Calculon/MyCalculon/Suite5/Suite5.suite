@@ -1,0 +1,2 @@
+P a.out main.c header.h
+T test1.in test1.out 1000

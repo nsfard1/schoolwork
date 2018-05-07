@@ -1,0 +1,9 @@
+selective_reject_handout_winter_2017b.doc (1)
+February 26, 2017
+CPE464 - Programming Assignment #3 – Selective Reject
+Due Monday March 13, 2017
+NEW: Regarding the format for the RR and SREJ packets
+ RR packet format: Packet Seq number, checksum, flag, RR seq number (what you are RRing)1
+ SREJ packet format: Packet Seq number, checksum, flag , SREJ seq number (what you are SREJing)
+This program is due on Monday March 13th at 11:59 pm. If your program is late you will lose 15% per day.
+The

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+printf "Valid Tests to run: 1, 2, 3, 4, 9, 12, 13\n"
+
+for ((i = $2; i <= $3; i += 1))
+do
+   rm -f test.temp
+
+   printf "Compressing testfile: $1 with recycle code: $i\n"
+   SafeRun -o2000000 -t970 -T4000 LZWCmp -R $i test$1.out < /dev/null
+
+   printf "Running LZW with recycle code: $i\n"
+   SafeRun -o2000000 -t970 -T4000 LZWExp -R $i < test$1.in > test.temp
+  
+   echo $?
+   printf "\n"
+
+   printf "Diffing outputs:\n"
+   diff test.temp test$1.out > diffedOut
+
+   cat diffedOut
+
+   printf "\n\n"
+done

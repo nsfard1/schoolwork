@@ -1,0 +1,4 @@
+P OK OK.c
+T test9.in test9.out 10000
+P ls.out ls.c
+T test15.in test15.out 10000

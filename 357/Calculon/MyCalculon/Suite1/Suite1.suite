@@ -1,0 +1,7 @@
+P a.out main.c header.h
+T test1.in test1.out 1000 -a -b -c
+T test2.in test2.out 1000 -xyz
+T test3.in test3.out 800
+P b.out bprogram.c SmartAlloc.c SmartAlloc.h
+T test5.in test5.out 10000
+T test4.in test4.out 30000 -verbose

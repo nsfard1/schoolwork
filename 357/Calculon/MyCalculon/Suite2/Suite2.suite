@@ -1,0 +1,13 @@
+P seg.out segfault.c
+T test6.in test6.out 800
+P time.out timeout.c
+T test6.in test6.out 200
+T test6.in test6.out 400
+T test6.in test6.out 800
+P error.out error.c
+T test6.in test6.out 800
+P diff.out diff.c
+T test6.in test6.out 800
+T test7.in test7.out 800
+P OK.out OK.c
+T test7.in test7.out 800

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+for (i = $1; i <= $2; i++)
+do
+   mkdir temp
+   cp Calculon temp
+   cp Suite$i/* temp
+   cd temp
+
+   exec /home/grade-cstaley/bin/SafeRun -p30 -t1000 -T10000 Calculon 2>&1 > myOut
+   diff Suite$i.out myOut
+
+   cd ..
+   rm -r temp
+done

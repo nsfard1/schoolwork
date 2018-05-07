@@ -1,0 +1,1845 @@
+
+
+-----------------
+1) Usage test:
+     minls -h 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+2) unparitioned, blank:
+     minls /home/pn-cs453/Given/Asgn5/Images/BlankDisk 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,3d0
+< /:^M
+< drwxrwxrwx       128 .^M
+< drwxrwxrwx       128 ..^M
+
+
+-----------------
+3) unpartitioned, files:
+     minls /home/pn-cs453/Given/Asgn5/Images/TestImage 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,6d0
+< /:^M
+< drwxrwxrwx       384 .^M
+< drwxrwxrwx       384 ..^M
+< -rw-r--r--     73991 Other^M
+< drwxr-xr-x      3200 src^M
+< -rw-r--r--        11 Hello^M
+
+
+-----------------
+5) partitioned, part 0:
+     minls -p 0 /home/pn-cs453/Given/Asgn5/Images/Partitioned 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,4d0
+< /:^M
+< drwxrwxrwx       192 .^M
+< drwxrwxrwx       192 ..^M
+< -rw-r--r--        20 Message^M
+
+
+-----------------
+6) partitioned, part 1:
+     minls -p 1 /home/pn-cs453/Given/Asgn5/Images/Partitioned 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,4d0
+< /:^M
+< drwxrwxrwx       192 .^M
+< drwxrwxrwx       192 ..^M
+< -rw-r--r--        20 Message^M
+
+
+-----------------
+7) partitioned, part 2:
+     minls -p 2 /home/pn-cs453/Given/Asgn5/Images/Partitioned 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,4d0
+< /:^M
+< drwxrwxrwx       192 .^M
+< drwxrwxrwx       192 ..^M
+< -rw-r--r--        20 Message^M
+
+
+-----------------
+8) partitioned, part 3:
+     minls -p 3 /home/pn-cs453/Given/Asgn5/Images/Partitioned 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,4d0
+< /:^M
+< drwxrwxrwx       192 .^M
+< drwxrwxrwx       192 ..^M
+< -rw-r--r--        20 Message^M
+
+
+-----------------
+9) partitioned, bad part:
+     minls -p 5 /home/pn-cs453/Given/Asgn5/Images/Partitioned 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+10) partitioned, no part:
+     minls /home/pn-cs453/Given/Asgn5/Images/Partitioned 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+11) partitioned, not minix:
+     minls -p 1 /home/pn-cs453/Given/Asgn5/Images/HardDisk 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+12) subpart., good sub:
+     minls -p 0 -s 0 /home/pn-cs453/Given/Asgn5/Images/HardDisk 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,11d0
+< /:^M
+< drwxrwxrwx       640 .^M
+< drwxrwxrwx       640 ..^M
+< drwxr-xr-x       128 usr^M
+< drwxr-xr-x       128 tmp^M
+< drwxr-xr-x      2624 bin^M
+< drwxr-xr-x      1472 etc^M
+< drwxr-xr-x       768 sbin^M
+< drwxr-xr-x     14144 dev^M
+< drwxr-xr-x       192 lib^M
+< drwxr-xr-x       256 boot^M
+
+
+-----------------
+13) subpart., bad sub:
+     minls -p 0 -s 1 /home/pn-cs453/Given/Asgn5/Images/HardDisk 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+14) unpartitioned, w/filename:
+     minls /home/pn-cs453/Given/Asgn5/Images/TestImage /Hello 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        11 /Hello^M
+
+
+-----------------
+15) partitioned, w/filename, p0:
+     minls -p 0 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        20 /Message^M
+
+
+-----------------
+16) partitioned, w/filename, p1:
+     minls -p 1 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        20 /Message^M
+
+
+-----------------
+17) partitioned, w/filename, p2:
+     minls -p 2 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        20 /Message^M
+
+
+-----------------
+18) partitioned, w/filename, p3:
+     minls -p 3 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        20 /Message^M
+
+
+-----------------
+19) subpart., no filename s0:
+     minls -p 0 -s 0 /home/pn-cs453/Given/Asgn5/Images/HardDisk 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,11d0
+< /:^M
+< drwxrwxrwx       640 .^M
+< drwxrwxrwx       640 ..^M
+< drwxr-xr-x       128 usr^M
+< drwxr-xr-x       128 tmp^M
+< drwxr-xr-x      2624 bin^M
+< drwxr-xr-x      1472 etc^M
+< drwxr-xr-x       768 sbin^M
+< drwxr-xr-x     14144 dev^M
+< drwxr-xr-x       192 lib^M
+< drwxr-xr-x       256 boot^M
+
+
+-----------------
+20) subpart., no filename s2:
+     minls -p 0 -s 2 /home/pn-cs453/Given/Asgn5/Images/HardDisk 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,20d0
+< /:^M
+< drwxrwxrwx      1280 .^M
+< drwxrwxrwx      1280 ..^M
+< drwxr-xr-x       512 adm^M
+< drwxr-xr-x       512 ast^M
+< drwxr-xr-x     20800 bin^M
+< drwxr-xr-x       384 etc^M
+< drwxr-xr-x       640 gnu^M
+< drwxr-xr-x      3392 include^M
+< drwxr-xr-x      2112 lib^M
+< drwxr-xr-x       704 log^M
+< drwxr-xr-x       896 man^M
+< drwxr-xr-x       384 mdec^M
+< drwx------       128 preserve^M
+< drwxr-xr-x       192 run^M
+< drwxr-xr-x      1088 sbin^M
+< drwxr-xr-x       384 spool^M
+< drwxrwxrwx       128 tmp^M
+< drwxr-xr-x       896 src^M
+< drwxr-xr-x       192 home^M
+
+
+-----------------
+21) subpart., w/filename:
+     minls -p 0 -s 2 /home/pn-cs453/Given/Asgn5/Images/HardDisk /home/pnico/Message 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        72 /home/pnico/Message^M
+
+
+-----------------
+22) subpart., w/bad filename:
+     minls -p 0 -s 0 /home/pn-cs453/Given/Asgn5/Images/HardDisk /home/pnico/Message 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+23) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Files 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,8d0
+< /Files:^M
+< drwxr-xr-x       448 .^M
+< drwxrwxrwx       448 ..^M
+< -rw-r--r--         0 0000_Zones^M
+< -rw-r--r--      4096 0000_Zone^M
+< -rw-r--r--     28672 0007_Zones^M
+< -rw-r--r--     40960 0010_Zones^M
+< -rw-r--r--   4227072 1032_Zones^M
+
+
+-----------------
+24) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Files/0000_Zones 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--         0 /Files/0000_Zones^M
+
+
+-----------------
+25) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Files/0000_Zone 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--      4096 /Files/0000_Zone^M
+
+
+-----------------
+26) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Files/0007_Zones 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--     28672 /Files/0007_Zones^M
+
+
+-----------------
+27) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Files/0010_Zones 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--     40960 /Files/0010_Zones^M
+
+
+-----------------
+28) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Files/1032_Zones 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--   4227072 /Files/1032_Zones^M
+
+
+-----------------
+29) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /DeepPaths/a/b/c/d/e/i/j/k/Files 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,4d0
+< /DeepPaths/a/b/c/d/e/i/j/k/Files:^M
+< drwxr-xr-x       192 .^M
+< drwxr-xr-x       192 ..^M
+< -rw-r--r--        47 Message^M
+
+
+-----------------
+30) directories:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /DeepPaths/a/b/c/d/e/i/j/k/Files/Message 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        47 /DeepPaths/a/b/c/d/e/i/j/k/Files/Message^M
+
+
+-----------------
+31) multi-zone directory:
+     minls /home/pn-cs453/Given/Asgn5/Images/BigDirectories 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,341d0
+< /:^M
+< drwxrwxrwx     21824 .^M
+< drwxrwxrwx     21824 ..^M
+< -rwxr--r--       190 doit^M
+< drwxr-xr-x       128 level1-000^M
+< drwxr-xr-x       128 level1-001^M
+< drwxr-xr-x       128 level1-002^M
+< drwxr-xr-x       128 level1-003^M
+< drwxr-xr-x       128 level1-004^M
+< drwxr-xr-x       128 level1-005^M
+< drwxr-xr-x       128 level1-006^M
+< drwxr-xr-x       128 level1-007^M
+< drwxr-xr-x       128 level1-008^M
+< drwxr-xr-x       128 level1-009^M
+< drwxr-xr-x       128 level1-010^M
+< drwxr-xr-x       128 level1-011^M
+< drwxr-xr-x       128 level1-012^M
+< drwxr-xr-x       128 level1-013^M
+< drwxr-xr-x       128 level1-014^M
+< drwxr-xr-x       128 level1-015^M
+< drwxr-xr-x       128 level1-016^M
+< drwxr-xr-x       128 level1-017^M
+< drwxr-xr-x       128 level1-018^M
+< drwxr-xr-x       128 level1-019^M
+< drwxr-xr-x       128 level1-020^M
+< drwxr-xr-x       128 level1-021^M
+< drwxr-xr-x       128 level1-022^M
+< drwxr-xr-x       128 level1-023^M
+< drwxr-xr-x       128 level1-024^M
+< drwxr-xr-x       128 level1-025^M
+< drwxr-xr-x       128 level1-026^M
+< drwxr-xr-x       128 level1-027^M
+< drwxr-xr-x       128 level1-028^M
+< drwxr-xr-x       128 level1-029^M
+< drwxr-xr-x       128 level1-030^M
+< drwxr-xr-x       128 level1-031^M
+< drwxr-xr-x       128 level1-032^M
+< drwxr-xr-x       128 level1-033^M
+< drwxr-xr-x       128 level1-034^M
+< drwxr-xr-x       128 level1-035^M
+< drwxr-xr-x       128 level1-036^M
+< drwxr-xr-x       128 level1-037^M
+< drwxr-xr-x       128 level1-038^M
+< drwxr-xr-x       128 level1-039^M
+< drwxr-xr-x       128 level1-040^M
+< drwxr-xr-x       128 level1-041^M
+< drwxr-xr-x       128 level1-042^M
+< drwxr-xr-x       128 level1-043^M
+< drwxr-xr-x       128 level1-044^M
+< drwxr-xr-x       128 level1-045^M
+< drwxr-xr-x       128 level1-046^M
+< drwxr-xr-x       128 level1-047^M
+< drwxr-xr-x       128 level1-048^M
+< drwxr-xr-x       128 level1-049^M
+< drwxr-xr-x       128 level1-050^M
+< drwxr-xr-x       128 level1-051^M
+< drwxr-xr-x       128 level1-052^M
+< drwxr-xr-x       128 level1-053^M
+< drwxr-xr-x       128 level1-054^M
+< drwxr-xr-x       128 level1-055^M
+< drwxr-xr-x       128 level1-056^M
+< drwxr-xr-x       128 level1-057^M
+< drwxr-xr-x       128 level1-058^M
+< drwxr-xr-x       128 level1-059^M
+< drwxr-xr-x       128 level1-060^M
+< drwxr-xr-x       128 level1-061^M
+< drwxr-xr-x       128 level1-062^M
+< drwxr-xr-x       128 level1-063^M
+< drwxr-xr-x       128 level1-064^M
+< drwxr-xr-x       128 level1-065^M
+< drwxr-xr-x       128 level1-066^M
+< drwxr-xr-x       128 level1-067^M
+< drwxr-xr-x       128 level1-068^M
+< drwxr-xr-x       128 level1-069^M
+< drwxr-xr-x       128 level1-070^M
+< drwxr-xr-x       128 level1-071^M
+< drwxr-xr-x       128 level1-072^M
+< drwxr-xr-x       128 level1-073^M
+< drwxr-xr-x       128 level1-074^M
+< drwxr-xr-x       128 level1-075^M
+< drwxr-xr-x       128 level1-076^M
+< drwxr-xr-x       128 level1-077^M
+< drwxr-xr-x       128 level1-078^M
+< drwxr-xr-x       128 level1-079^M
+< drwxr-xr-x       128 level1-080^M
+< drwxr-xr-x       128 level1-081^M
+< drwxr-xr-x       128 level1-082^M
+< drwxr-xr-x       128 level1-083^M
+< drwxr-xr-x       128 level1-084^M
+< drwxr-xr-x       128 level1-085^M
+< drwxr-xr-x       128 level1-086^M
+< drwxr-xr-x       128 level1-087^M
+< drwxr-xr-x       128 level1-088^M
+< drwxr-xr-x       128 level1-089^M
+< drwxr-xr-x       128 level1-090^M
+< drwxr-xr-x       128 level1-091^M
+< drwxr-xr-x       128 level1-092^M
+< drwxr-xr-x       128 level1-093^M
+< drwxr-xr-x       128 level1-094^M
+< drwxr-xr-x       128 level1-095^M
+< drwxr-xr-x       128 level1-096^M
+< drwxr-xr-x       128 level1-097^M
+< drwxr-xr-x       128 level1-098^M
+< drwxr-xr-x       128 level1-099^M
+< drwxr-xr-x       128 level1-100^M
+< drwxr-xr-x       128 level1-101^M
+< drwxr-xr-x       128 level1-102^M
+< drwxr-xr-x       128 level1-103^M
+< drwxr-xr-x       128 level1-104^M
+< drwxr-xr-x       128 level1-105^M
+< drwxr-xr-x       128 level1-106^M
+< drwxr-xr-x       128 level1-107^M
+< drwxr-xr-x       128 level1-108^M
+< drwxr-xr-x       128 level1-109^M
+< drwxr-xr-x       128 level1-110^M
+< drwxr-xr-x       128 level1-111^M
+< drwxr-xr-x       128 level1-112^M
+< drwxr-xr-x       128 level1-113^M
+< drwxr-xr-x       128 level1-114^M
+< drwxr-xr-x       128 level1-115^M
+< drwxr-xr-x       128 level1-116^M
+< drwxr-xr-x       128 level1-117^M
+< drwxr-xr-x       128 level1-118^M
+< drwxr-xr-x       128 level1-119^M
+< drwxr-xr-x       128 level1-120^M
+< drwxr-xr-x       128 level1-121^M
+< drwxr-xr-x       128 level1-122^M
+< drwxr-xr-x       128 level1-123^M
+< drwxr-xr-x       128 level1-124^M
+< drwxr-xr-x       128 level1-125^M
+< drwxr-xr-x       128 level1-126^M
+< drwxr-xr-x       128 level1-127^M
+< drwxr-xr-x       128 level1-128^M
+< drwxr-xr-x       128 level1-129^M
+< drwxr-xr-x       128 level1-130^M
+< drwxr-xr-x       128 level1-131^M
+< drwxr-xr-x       128 level1-132^M
+< drwxr-xr-x       128 level1-133^M
+< drwxr-xr-x       128 level1-134^M
+< drwxr-xr-x       128 level1-135^M
+< drwxr-xr-x       128 level1-136^M
+< drwxr-xr-x       128 level1-137^M
+< drwxr-xr-x       128 level1-138^M
+< drwxr-xr-x       128 level1-139^M
+< drwxr-xr-x       128 level1-140^M
+< drwxr-xr-x       128 level1-141^M
+< drwxr-xr-x       128 level1-142^M
+< drwxr-xr-x       128 level1-143^M
+< drwxr-xr-x       128 level1-144^M
+< drwxr-xr-x       128 level1-145^M
+< drwxr-xr-x       128 level1-146^M
+< drwxr-xr-x       128 level1-147^M
+< drwxr-xr-x       128 level1-148^M
+< drwxr-xr-x       128 level1-149^M
+< drwxr-xr-x       128 level1-150^M
+< drwxr-xr-x       128 level1-151^M
+< drwxr-xr-x       128 level1-152^M
+< drwxr-xr-x       128 level1-153^M
+< drwxr-xr-x       128 level1-154^M
+< drwxr-xr-x       128 level1-155^M
+< drwxr-xr-x       128 level1-156^M
+< drwxr-xr-x       128 level1-157^M
+< drwxr-xr-x       128 level1-158^M
+< drwxr-xr-x       128 level1-159^M
+< drwxr-xr-x       128 level1-160^M
+< drwxr-xr-x       128 level1-161^M
+< drwxr-xr-x       128 level1-162^M
+< drwxr-xr-x       128 level1-163^M
+< drwxr-xr-x       128 level1-164^M
+< drwxr-xr-x       128 level1-165^M
+< drwxr-xr-x       128 level1-166^M
+< drwxr-xr-x       128 level1-167^M
+< drwxr-xr-x       128 level1-168^M
+< drwxr-xr-x       128 level1-169^M
+< drwxr-xr-x       128 level1-170^M
+< drwxr-xr-x       128 level1-171^M
+< drwxr-xr-x       128 level1-172^M
+< drwxr-xr-x       128 level1-173^M
+< drwxr-xr-x       128 level1-174^M
+< drwxr-xr-x       128 level1-175^M
+< drwxr-xr-x       128 level1-176^M
+< drwxr-xr-x       128 level1-177^M
+< drwxr-xr-x       128 level1-178^M
+< drwxr-xr-x       128 level1-179^M
+< drwxr-xr-x       128 level1-180^M
+< drwxr-xr-x       128 level1-181^M
+< drwxr-xr-x       128 level1-182^M
+< drwxr-xr-x       128 level1-183^M
+< drwxr-xr-x       128 level1-184^M
+< drwxr-xr-x       128 level1-185^M
+< drwxr-xr-x       128 level1-186^M
+< drwxr-xr-x       128 level1-187^M
+< drwxr-xr-x       128 level1-188^M
+< drwxr-xr-x       128 level1-189^M
+< drwxr-xr-x       128 level1-190^M
+< drwxr-xr-x       128 level1-191^M
+< drwxr-xr-x       128 level1-192^M
+< drwxr-xr-x       128 level1-193^M
+< drwxr-xr-x       128 level1-194^M
+< drwxr-xr-x       128 level1-195^M
+< drwxr-xr-x       128 level1-196^M
+< drwxr-xr-x       128 level1-197^M
+< drwxr-xr-x       128 level1-198^M
+< drwxr-xr-x       128 level1-199^M
+< drwxr-xr-x       128 level1-200^M
+< drwxr-xr-x       128 level1-201^M
+< drwxr-xr-x       128 level1-202^M
+< drwxr-xr-x       128 level1-203^M
+< drwxr-xr-x       128 level1-204^M
+< drwxr-xr-x       128 level1-205^M
+< drwxr-xr-x       128 level1-206^M
+< drwxr-xr-x       128 level1-207^M
+< drwxr-xr-x       128 level1-208^M
+< drwxr-xr-x       128 level1-209^M
+< drwxr-xr-x       128 level1-210^M
+< drwxr-xr-x       128 level1-211^M
+< drwxr-xr-x       128 level1-212^M
+< drwxr-xr-x       128 level1-213^M
+< drwxr-xr-x       128 level1-214^M
+< drwxr-xr-x       128 level1-215^M
+< drwxr-xr-x       128 level1-216^M
+< drwxr-xr-x       128 level1-217^M
+< drwxr-xr-x       128 level1-218^M
+< drwxr-xr-x       128 level1-219^M
+< drwxr-xr-x       128 level1-220^M
+< drwxr-xr-x       128 level1-221^M
+< drwxr-xr-x       128 level1-222^M
+< drwxr-xr-x       128 level1-223^M
+< drwxr-xr-x       128 level1-224^M
+< drwxr-xr-x       128 level1-225^M
+< -rw-r--r--        64 LastFile^M
+< drwxr-xr-x       128 level1-227^M
+< drwxr-xr-x       128 level1-228^M
+< drwxr-xr-x       128 level1-229^M
+< drwxr-xr-x       128 level1-230^M
+< drwxr-xr-x       128 level1-231^M
+< drwxr-xr-x       128 level1-232^M
+< drwxr-xr-x       128 level1-233^M
+< drwxr-xr-x       128 level1-234^M
+< drwxr-xr-x       128 level1-235^M
+< drwxr-xr-x       128 level1-236^M
+< drwxr-xr-x       128 level1-237^M
+< drwxr-xr-x       128 level1-238^M
+< drwxr-xr-x       128 level1-239^M
+< drwxr-xr-x       128 level1-240^M
+< drwxr-xr-x       128 level1-241^M
+< drwxr-xr-x       128 level1-242^M
+< drwxr-xr-x       128 level1-243^M
+< drwxr-xr-x       128 level1-244^M
+< drwxr-xr-x       128 level1-245^M
+< drwxr-xr-x       128 level1-246^M
+< drwxr-xr-x       128 level1-247^M
+< drwxr-xr-x       128 level1-248^M
+< drwxr-xr-x       128 level1-249^M
+< drwxr-xr-x       128 level1-250^M
+< drwxr-xr-x       128 level1-251^M
+< drwxr-xr-x       128 level1-252^M
+< drwxr-xr-x       128 level1-253^M
+< drwxr-xr-x       128 level1-254^M
+< drwxr-xr-x       128 level1-255^M
+< drwxr-xr-x       128 level1-256^M
+< drwxr-xr-x       128 level1-257^M
+< drwxr-xr-x       128 level1-258^M
+< drwxr-xr-x       128 level1-259^M
+< drwxr-xr-x       128 level1-260^M
+< drwxr-xr-x       128 level1-261^M
+< drwxr-xr-x       128 level1-262^M
+< drwxr-xr-x       128 level1-263^M
+< drwxr-xr-x       128 level1-264^M
+< drwxr-xr-x       128 level1-265^M
+< drwxr-xr-x       128 level1-266^M
+< drwxr-xr-x       128 level1-267^M
+< drwxr-xr-x       128 level1-268^M
+< drwxr-xr-x       128 level1-269^M
+< drwxr-xr-x       128 level1-270^M
+< drwxr-xr-x       128 level1-271^M
+< drwxr-xr-x       128 level1-272^M
+< drwxr-xr-x       128 level1-273^M
+< drwxr-xr-x       128 level1-274^M
+< drwxr-xr-x       128 level1-275^M
+< drwxr-xr-x       128 level1-276^M
+< drwxr-xr-x       128 level1-277^M
+< drwxr-xr-x       128 level1-278^M
+< drwxr-xr-x       128 level1-279^M
+< drwxr-xr-x       128 level1-280^M
+< drwxr-xr-x       128 level1-281^M
+< drwxr-xr-x       128 level1-282^M
+< drwxr-xr-x       128 level1-283^M
+< drwxr-xr-x       128 level1-284^M
+< drwxr-xr-x       128 level1-285^M
+< drwxr-xr-x       128 level1-286^M
+< drwxr-xr-x       128 level1-287^M
+< drwxr-xr-x       128 level1-288^M
+< drwxr-xr-x       128 level1-289^M
+< drwxr-xr-x       128 level1-290^M
+< drwxr-xr-x       128 level1-291^M
+< drwxr-xr-x       128 level1-292^M
+< drwxr-xr-x       128 level1-293^M
+< drwxr-xr-x       128 level1-294^M
+< drwxr-xr-x       128 level1-295^M
+< drwxr-xr-x       128 level1-296^M
+< drwxr-xr-x       128 level1-297^M
+< drwxr-xr-x       128 level1-298^M
+< drwxr-xr-x       128 level1-299^M
+< drwxr-xr-x       128 level1-300^M
+< drwxr-xr-x       128 level1-301^M
+< drwxr-xr-x       128 level1-302^M
+< drwxr-xr-x       128 level1-303^M
+< drwxr-xr-x       128 level1-304^M
+< drwxr-xr-x       128 level1-305^M
+< drwxr-xr-x       128 level1-306^M
+< drwxr-xr-x       128 level1-307^M
+< drwxr-xr-x       128 level1-308^M
+< drwxr-xr-x       128 level1-309^M
+< drwxr-xr-x       128 level1-310^M
+< drwxr-xr-x       128 level1-311^M
+< drwxr-xr-x       128 level1-312^M
+< drwxr-xr-x       128 level1-313^M
+< drwxr-xr-x       128 level1-314^M
+< drwxr-xr-x       128 level1-315^M
+< drwxr-xr-x       128 level1-316^M
+< drwxr-xr-x       128 level1-317^M
+< drwxr-xr-x       128 level1-318^M
+< drwxr-xr-x       128 level1-319^M
+< drwxr-xr-x       128 level1-320^M
+< drwxr-xr-x       128 level1-321^M
+< drwxr-xr-x       128 level1-322^M
+< drwxr-xr-x       128 level1-323^M
+< drwxr-xr-x       128 level1-324^M
+< drwxr-xr-x       128 level1-325^M
+< drwxr-xr-x       128 level1-326^M
+< drwxr-xr-x       128 level1-327^M
+< drwxr-xr-x       128 level1-328^M
+< drwxr-xr-x       128 level1-329^M
+< drwxr-xr-x       128 level1-330^M
+< drwxr-xr-x       128 level1-331^M
+< drwxr-xr-x       128 level1-332^M
+< drwxr-xr-x       128 level1-333^M
+< drwxr-xr-x       128 level1-334^M
+< drwxr-xr-x       128 level1-335^M
+< drwxr-xr-x       128 level1-336^M
+
+
+-----------------
+32) multi-zone directory (file):
+     minls /home/pn-cs453/Given/Asgn5/Images/BigDirectories LastFile 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--        64 LastFile^M
+
+
+-----------------
+33) indirect directory:
+     minls /home/pn-cs453/Given/Asgn5/Images/BigIndirectDirs Level1/Level2 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,766d0
+< Level1/Level2:^M
+< drwxr-xr-x     49024 .^M
+< drwxr-xr-x       192 ..^M
+< drwxr-xr-x       128 BigDir^M
+< -rw-r--r--         0 file_000^M
+< -rw-r--r--         0 file_001^M
+< -rw-r--r--         0 file_002^M
+< -rw-r--r--         0 file_003^M
+< -rw-r--r--         0 file_004^M
+< -rw-r--r--         0 file_005^M
+< -rw-r--r--         0 file_006^M
+< -rw-r--r--         0 file_007^M
+< -rw-r--r--         0 file_010^M
+< -rw-r--r--         0 file_011^M
+< -rw-r--r--         0 file_012^M
+< -rw-r--r--         0 file_013^M
+< -rw-r--r--         0 file_014^M
+< -rw-r--r--         0 file_015^M
+< -rw-r--r--         0 file_016^M
+< -rw-r--r--         0 file_017^M
+< -rw-r--r--         0 file_020^M
+< -rw-r--r--         0 file_021^M
+< -rw-r--r--         0 file_022^M
+< -rw-r--r--         0 file_023^M
+< -rw-r--r--         0 file_024^M
+< -rw-r--r--         0 file_025^M
+< -rw-r--r--         0 file_026^M
+< -rw-r--r--         0 file_027^M
+< -rw-r--r--         0 file_030^M
+< -rw-r--r--         0 file_031^M
+< -rw-r--r--         0 file_032^M
+< -rw-r--r--         0 file_033^M
+< -rw-r--r--         0 file_034^M
+< -rw-r--r--         0 file_035^M
+< -rw-r--r--         0 file_036^M
+< -rw-r--r--         0 file_037^M
+< -rw-r--r--         0 file_040^M
+< -rw-r--r--         0 file_041^M
+< -rw-r--r--         0 file_042^M
+< -rw-r--r--         0 file_043^M
+< -rw-r--r--         0 file_044^M
+< -rw-r--r--         0 file_045^M
+< -rw-r--r--         0 file_046^M
+< -rw-r--r--         0 file_047^M
+< -rw-r--r--         0 file_050^M
+< -rw-r--r--         0 file_051^M
+< -rw-r--r--         0 file_052^M
+< -rw-r--r--         0 file_053^M
+< -rw-r--r--         0 file_054^M
+< -rw-r--r--         0 file_055^M
+< -rw-r--r--         0 file_056^M
+< -rw-r--r--         0 file_057^M
+< -rw-r--r--         0 file_060^M
+< -rw-r--r--         0 file_061^M
+< -rw-r--r--         0 file_062^M
+< -rw-r--r--         0 file_063^M
+< -rw-r--r--         0 file_064^M
+< -rw-r--r--         0 file_065^M
+< -rw-r--r--         0 file_066^M
+< -rw-r--r--         0 file_067^M
+< -rw-r--r--         0 file_070^M
+< -rw-r--r--         0 file_071^M
+< -rw-r--r--         0 file_072^M
+< -rw-r--r--         0 file_073^M
+< -rw-r--r--         0 file_074^M
+< -rw-r--r--         0 file_075^M
+< -rw-r--r--         0 file_076^M
+< -rw-r--r--         0 file_077^M
+< -rw-r--r--         0 file_080^M
+< -rw-r--r--         0 file_081^M
+< -rw-r--r--         0 file_082^M
+< -rw-r--r--         0 file_083^M
+< -rw-r--r--         0 file_084^M
+< -rw-r--r--         0 file_085^M
+< -rw-r--r--         0 file_086^M
+< -rw-r--r--         0 file_087^M
+< -rw-r--r--         0 file_090^M
+< -rw-r--r--         0 file_091^M
+< -rw-r--r--         0 file_092^M
+< -rw-r--r--         0 file_093^M
+< -rw-r--r--         0 file_094^M
+< -rw-r--r--         0 file_095^M
+< -rw-r--r--         0 file_096^M
+< -rw-r--r--         0 file_097^M
+< -rw-r--r--         0 file_100^M
+< -rw-r--r--         0 file_101^M
+< -rw-r--r--         0 file_102^M
+< -rw-r--r--         0 file_103^M
+< -rw-r--r--         0 file_104^M
+< -rw-r--r--         0 file_105^M
+< -rw-r--r--         0 file_106^M
+< -rw-r--r--         0 file_107^M
+< -rw-r--r--         0 file_110^M
+< -rw-r--r--         0 file_111^M
+< -rw-r--r--         0 file_112^M
+< -rw-r--r--         0 file_113^M
+< -rw-r--r--         0 file_114^M
+< -rw-r--r--         0 file_115^M
+< -rw-r--r--         0 file_116^M
+< -rw-r--r--         0 file_117^M
+< -rw-r--r--         0 file_120^M
+< -rw-r--r--         0 file_121^M
+< -rw-r--r--         0 file_122^M
+< -rw-r--r--         0 file_123^M
+< -rw-r--r--         0 file_124^M
+< -rw-r--r--         0 file_125^M
+< -rw-r--r--         0 file_126^M
+< -rw-r--r--         0 file_127^M
+< -rw-r--r--         0 file_130^M
+< -rw-r--r--         0 file_131^M
+< -rw-r--r--         0 file_132^M
+< -rw-r--r--         0 file_133^M
+< -rw-r--r--         0 file_134^M
+< -rw-r--r--         0 file_135^M
+< -rw-r--r--         0 file_136^M
+< -rw-r--r--         0 file_137^M
+< -rw-r--r--         0 file_140^M
+< -rw-r--r--         0 file_141^M
+< -rw-r--r--         0 file_142^M
+< -rw-r--r--         0 file_143^M
+< -rw-r--r--         0 file_144^M
+< -rw-r--r--         0 file_145^M
+< -rw-r--r--         0 file_146^M
+< -rw-r--r--         0 file_147^M
+< -rw-r--r--         0 file_150^M
+< -rw-r--r--         0 file_151^M
+< -rw-r--r--         0 file_152^M
+< -rw-r--r--         0 file_153^M
+< -rw-r--r--         0 file_154^M
+< -rw-r--r--         0 file_155^M
+< -rw-r--r--         0 file_156^M
+< -rw-r--r--         0 file_157^M
+< -rw-r--r--         0 file_160^M
+< -rw-r--r--         0 file_161^M
+< -rw-r--r--         0 file_162^M
+< -rw-r--r--         0 file_163^M
+< -rw-r--r--         0 file_164^M
+< -rw-r--r--         0 file_165^M
+< -rw-r--r--         0 file_166^M
+< -rw-r--r--         0 file_167^M
+< -rw-r--r--         0 file_170^M
+< -rw-r--r--         0 file_171^M
+< -rw-r--r--         0 file_172^M
+< -rw-r--r--         0 file_173^M
+< -rw-r--r--         0 file_174^M
+< -rw-r--r--         0 file_175^M
+< -rw-r--r--         0 file_176^M
+< -rw-r--r--         0 file_177^M
+< -rw-r--r--         0 file_180^M
+< -rw-r--r--         0 file_181^M
+< -rw-r--r--         0 file_182^M
+< -rw-r--r--         0 file_183^M
+< -rw-r--r--         0 file_184^M
+< -rw-r--r--         0 file_185^M
+< -rw-r--r--         0 file_186^M
+< -rw-r--r--         0 file_187^M
+< -rw-r--r--         0 file_190^M
+< -rw-r--r--         0 file_191^M
+< -rw-r--r--         0 file_192^M
+< -rw-r--r--         0 file_193^M
+< -rw-r--r--         0 file_194^M
+< -rw-r--r--         0 file_195^M
+< -rw-r--r--         0 file_196^M
+< -rw-r--r--         0 file_197^M
+< -rw-r--r--         0 file_200^M
+< -rw-r--r--         0 file_201^M
+< -rw-r--r--         0 file_202^M
+< -rw-r--r--         0 file_203^M
+< -rw-r--r--         0 file_204^M
+< -rw-r--r--         0 file_205^M
+< -rw-r--r--         0 file_206^M
+< -rw-r--r--         0 file_207^M
+< -rw-r--r--         0 file_210^M
+< -rw-r--r--         0 file_211^M
+< -rw-r--r--         0 file_212^M
+< -rw-r--r--         0 file_213^M
+< -rw-r--r--         0 file_214^M
+< -rw-r--r--         0 file_215^M
+< -rw-r--r--         0 file_216^M
+< -rw-r--r--         0 file_217^M
+< -rw-r--r--         0 file_220^M
+< -rw-r--r--         0 file_221^M
+< -rw-r--r--         0 file_222^M
+< -rw-r--r--         0 file_223^M
+< -rw-r--r--         0 file_224^M
+< -rw-r--r--         0 file_225^M
+< -rw-r--r--         0 file_226^M
+< -rw-r--r--         0 file_227^M
+< -rw-r--r--         0 file_230^M
+< -rw-r--r--         0 file_231^M
+< -rw-r--r--         0 file_232^M
+< -rw-r--r--         0 file_233^M
+< -rw-r--r--         0 file_234^M
+< -rw-r--r--         0 file_235^M
+< -rw-r--r--         0 file_236^M
+< -rw-r--r--         0 file_237^M
+< -rw-r--r--         0 file_240^M
+< -rw-r--r--         0 file_241^M
+< -rw-r--r--         0 file_242^M
+< -rw-r--r--         0 file_243^M
+< -rw-r--r--         0 file_244^M
+< -rw-r--r--         0 file_245^M
+< -rw-r--r--         0 file_246^M
+< -rw-r--r--         0 file_247^M
+< -rw-r--r--         0 file_250^M
+< -rw-r--r--         0 file_251^M
+< -rw-r--r--         0 file_252^M
+< -rw-r--r--         0 file_253^M
+< -rw-r--r--         0 file_254^M
+< -rw-r--r--         0 file_255^M
+< -rw-r--r--         0 file_256^M
+< -rw-r--r--         0 file_257^M
+< -rw-r--r--         0 file_260^M
+< -rw-r--r--         0 file_261^M
+< -rw-r--r--         0 file_262^M
+< -rw-r--r--         0 file_263^M
+< -rw-r--r--         0 file_264^M
+< -rw-r--r--         0 file_265^M
+< -rw-r--r--         0 file_266^M
+< -rw-r--r--         0 file_267^M
+< -rw-r--r--         0 file_270^M
+< -rw-r--r--         0 file_271^M
+< -rw-r--r--         0 file_272^M
+< -rw-r--r--         0 file_273^M
+< -rw-r--r--         0 file_274^M
+< -rw-r--r--         0 file_275^M
+< -rw-r--r--         0 file_276^M
+< -rw-r--r--         0 file_277^M
+< -rw-r--r--         0 file_280^M
+< -rw-r--r--         0 file_281^M
+< -rw-r--r--         0 file_282^M
+< -rw-r--r--         0 file_283^M
+< -rw-r--r--         0 file_284^M
+< -rw-r--r--         0 file_285^M
+< -rw-r--r--         0 file_286^M
+< -rw-r--r--         0 file_287^M
+< -rw-r--r--         0 file_290^M
+< -rw-r--r--         0 file_291^M
+< -rw-r--r--         0 file_292^M
+< -rw-r--r--         0 file_293^M
+< -rw-r--r--         0 file_294^M
+< -rw-r--r--         0 file_295^M
+< -rw-r--r--         0 file_296^M
+< -rw-r--r--         0 file_297^M
+< -rw-r--r--         0 file_300^M
+< -rw-r--r--         0 file_301^M
+< -rw-r--r--         0 file_302^M
+< -rw-r--r--         0 file_303^M
+< -rw-r--r--         0 file_304^M
+< -rw-r--r--         0 file_305^M
+< -rw-r--r--         0 file_306^M
+< -rw-r--r--         0 file_307^M
+< -rw-r--r--         0 file_310^M
+< -rw-r--r--         0 file_311^M
+< -rw-r--r--         0 file_312^M
+< -rw-r--r--         0 file_313^M
+< -rw-r--r--         0 file_314^M
+< -rw-r--r--         0 file_315^M
+< -rw-r--r--         0 file_316^M
+< -rw-r--r--         0 file_317^M
+< -rw-r--r--         0 file_320^M
+< -rw-r--r--         0 file_321^M
+< -rw-r--r--         0 file_322^M
+< -rw-r--r--         0 file_323^M
+< -rw-r--r--         0 file_324^M
+< -rw-r--r--         0 file_325^M
+< -rw-r--r--         0 file_326^M
+< -rw-r--r--         0 file_327^M
+< -rw-r--r--         0 file_330^M
+< -rw-r--r--         0 file_331^M
+< -rw-r--r--         0 file_332^M
+< -rw-r--r--         0 file_333^M
+< -rw-r--r--         0 file_334^M
+< -rw-r--r--         0 file_335^M
+< -rw-r--r--         0 file_336^M
+< -rw-r--r--         0 file_337^M
+< -rw-r--r--         0 file_340^M
+< -rw-r--r--         0 file_341^M
+< -rw-r--r--         0 file_342^M
+< -rw-r--r--         0 file_343^M
+< -rw-r--r--         0 file_344^M
+< -rw-r--r--         0 file_345^M
+< -rw-r--r--         0 file_346^M
+< -rw-r--r--         0 file_347^M
+< -rw-r--r--         0 file_350^M
+< -rw-r--r--         0 file_351^M
+< -rw-r--r--         0 file_352^M
+< -rw-r--r--         0 file_353^M
+< -rw-r--r--         0 file_354^M
+< -rw-r--r--         0 file_355^M
+< -rw-r--r--         0 file_356^M
+< -rw-r--r--         0 file_357^M
+< -rw-r--r--         0 file_360^M
+< -rw-r--r--         0 file_361^M
+< -rw-r--r--         0 file_362^M
+< -rw-r--r--         0 file_363^M
+< -rw-r--r--         0 file_364^M
+< -rw-r--r--         0 file_365^M
+< -rw-r--r--         0 file_366^M
+< -rw-r--r--         0 file_367^M
+< -rw-r--r--         0 file_370^M
+< -rw-r--r--         0 file_371^M
+< -rw-r--r--         0 file_372^M
+< -rw-r--r--         0 file_373^M
+< -rw-r--r--         0 file_374^M
+< -rw-r--r--         0 file_375^M
+< -rw-r--r--         0 file_376^M
+< -rw-r--r--         0 file_377^M
+< -rw-r--r--         0 file_380^M
+< -rw-r--r--         0 file_381^M
+< -rw-r--r--         0 file_382^M
+< -rw-r--r--         0 file_383^M
+< -rw-r--r--         0 file_384^M
+< -rw-r--r--         0 file_385^M
+< -rw-r--r--         0 file_386^M
+< -rw-r--r--         0 file_387^M
+< -rw-r--r--         0 file_390^M
+< -rw-r--r--         0 file_391^M
+< -rw-r--r--         0 file_392^M
+< -rw-r--r--         0 file_393^M
+< -rw-r--r--         0 file_394^M
+< -rw-r--r--         0 file_395^M
+< -rw-r--r--         0 file_396^M
+< -rw-r--r--         0 file_397^M
+< -rw-r--r--         0 file_400^M
+< -rw-r--r--         0 file_401^M
+< -rw-r--r--         0 file_402^M
+< -rw-r--r--         0 file_403^M
+< -rw-r--r--         0 file_404^M
+< -rw-r--r--         0 file_405^M
+< -rw-r--r--         0 file_406^M
+< -rw-r--r--         0 file_407^M
+< -rw-r--r--         0 file_410^M
+< -rw-r--r--         0 file_411^M
+< -rw-r--r--         0 file_412^M
+< -rw-r--r--         0 file_413^M
+< -rw-r--r--         0 file_414^M
+< -rw-r--r--         0 file_415^M
+< -rw-r--r--         0 file_416^M
+< -rw-r--r--         0 file_417^M
+< -rw-r--r--         0 file_420^M
+< -rw-r--r--         0 file_421^M
+< -rw-r--r--         0 file_422^M
+< -rw-r--r--         0 file_423^M
+< -rw-r--r--         0 file_424^M
+< -rw-r--r--         0 file_425^M
+< -rw-r--r--         0 file_426^M
+< -rw-r--r--         0 file_427^M
+< -rw-r--r--         0 file_430^M
+< -rw-r--r--         0 file_431^M
+< -rw-r--r--         0 file_432^M
+< -rw-r--r--         0 file_433^M
+< -rw-r--r--         0 file_434^M
+< -rw-r--r--         0 file_435^M
+< -rw-r--r--         0 file_436^M
+< -rw-r--r--         0 file_437^M
+< -rw-r--r--         0 file_440^M
+< -rw-r--r--         0 file_441^M
+< -rw-r--r--         0 file_442^M
+< -rw-r--r--         0 file_443^M
+< -rw-r--r--         0 file_444^M
+< -rw-r--r--         0 file_445^M
+< -rw-r--r--         0 file_446^M
+< -rw-r--r--         0 file_447^M
+< -rw-r--r--         0 file_450^M
+< -rw-r--r--         0 file_451^M
+< -rw-r--r--         0 file_452^M
+< -rw-r--r--         0 file_453^M
+< -rw-r--r--         0 file_454^M
+< -rw-r--r--         0 file_455^M
+< -rw-r--r--         0 file_456^M
+< -rw-r--r--         0 file_457^M
+< -rw-r--r--         0 file_460^M
+< -rw-r--r--         0 file_461^M
+< -rw-r--r--         0 file_462^M
+< -rw-r--r--         0 file_463^M
+< -rw-r--r--         0 file_464^M
+< -rw-r--r--         0 file_465^M
+< -rw-r--r--         0 file_466^M
+< -rw-r--r--         0 file_467^M
+< -rw-r--r--         0 file_470^M
+< -rw-r--r--         0 file_471^M
+< -rw-r--r--         0 file_472^M
+< -rw-r--r--         0 file_473^M
+< -rw-r--r--         0 file_474^M
+< -rw-r--r--         0 file_475^M
+< -rw-r--r--         0 file_476^M
+< -rw-r--r--         0 file_477^M
+< -rw-r--r--         0 file_480^M
+< -rw-r--r--         0 file_481^M
+< -rw-r--r--         0 file_482^M
+< -rw-r--r--         0 file_483^M
+< -rw-r--r--         0 file_484^M
+< -rw-r--r--         0 file_485^M
+< -rw-r--r--         0 file_486^M
+< -rw-r--r--         0 file_487^M
+< -rw-r--r--         0 file_490^M
+< -rw-r--r--         0 file_491^M
+< -rw-r--r--         0 file_492^M
+< -rw-r--r--         0 file_493^M
+< -rw-r--r--         0 file_494^M
+< -rw-r--r--         0 file_495^M
+< -rw-r--r--         0 file_496^M
+< -rw-r--r--         0 file_497^M
+< -rw-r--r--         0 file_500^M
+< -rw-r--r--         0 file_501^M
+< -rw-r--r--         0 file_502^M
+< -rw-r--r--         0 file_503^M
+< -rw-r--r--         0 file_504^M
+< -rw-r--r--         0 file_505^M
+< -rw-r--r--         0 file_506^M
+< -rw-r--r--         0 file_507^M
+< -rw-r--r--         0 file_510^M
+< -rw-r--r--         0 file_511^M
+< -rw-r--r--         0 file_512^M
+< -rw-r--r--         0 file_513^M
+< -rw-r--r--         0 file_514^M
+< -rw-r--r--         0 file_515^M
+< -rw-r--r--         0 file_516^M
+< -rw-r--r--         0 file_517^M
+< -rw-r--r--         0 file_520^M
+< -rw-r--r--         0 file_521^M
+< -rw-r--r--         0 file_522^M
+< -rw-r--r--         0 file_523^M
+< -rw-r--r--         0 file_524^M
+< -rw-r--r--         0 file_525^M
+< -rw-r--r--         0 file_526^M
+< -rw-r--r--         0 file_527^M
+< -rw-r--r--         0 file_530^M
+< -rw-r--r--         0 file_531^M
+< -rw-r--r--         0 file_532^M
+< -rw-r--r--         0 file_533^M
+< -rw-r--r--         0 file_534^M
+< -rw-r--r--         0 file_535^M
+< -rw-r--r--         0 file_536^M
+< -rw-r--r--         0 file_537^M
+< -rw-r--r--         0 file_540^M
+< -rw-r--r--         0 file_541^M
+< -rw-r--r--         0 file_542^M
+< -rw-r--r--         0 file_543^M
+< -rw-r--r--         0 file_544^M
+< -rw-r--r--         0 file_545^M
+< -rw-r--r--         0 file_546^M
+< -rw-r--r--         0 file_547^M
+< -rw-r--r--         0 file_550^M
+< -rw-r--r--         0 file_551^M
+< -rw-r--r--         0 file_552^M
+< -rw-r--r--         0 file_553^M
+< -rw-r--r--         0 file_554^M
+< -rw-r--r--         0 file_555^M
+< -rw-r--r--         0 file_556^M
+< -rw-r--r--         0 file_557^M
+< -rw-r--r--         0 file_560^M
+< -rw-r--r--         0 file_561^M
+< -rw-r--r--         0 file_562^M
+< -rw-r--r--         0 file_563^M
+< -rw-r--r--         0 file_564^M
+< -rw-r--r--         0 file_565^M
+< -rw-r--r--         0 file_566^M
+< -rw-r--r--         0 file_567^M
+< -rw-r--r--         0 file_570^M
+< -rw-r--r--         0 file_571^M
+< -rw-r--r--         0 file_572^M
+< -rw-r--r--         0 file_573^M
+< -rw-r--r--         0 file_574^M
+< -rw-r--r--         0 file_575^M
+< -rw-r--r--         0 file_576^M
+< -rw-r--r--         0 file_577^M
+< -rw-r--r--         0 file_580^M
+< -rw-r--r--         0 file_581^M
+< -rw-r--r--         0 file_582^M
+< -rw-r--r--         0 file_583^M
+< -rw-r--r--         0 file_584^M
+< -rw-r--r--         0 file_585^M
+< -rw-r--r--         0 file_586^M
+< -rw-r--r--         0 file_587^M
+< -rw-r--r--         0 file_590^M
+< -rw-r--r--         0 file_591^M
+< -rw-r--r--         0 file_592^M
+< -rw-r--r--         0 file_593^M
+< -rw-r--r--         0 file_594^M
+< -rw-r--r--         0 file_595^M
+< -rw-r--r--         0 file_596^M
+< -rw-r--r--         0 file_597^M
+< -rw-r--r--         0 file_600^M
+< -rw-r--r--         0 file_601^M
+< -rw-r--r--         0 file_602^M
+< -rw-r--r--         0 file_603^M
+< -rw-r--r--         0 file_604^M
+< -rw-r--r--         0 file_605^M
+< -rw-r--r--         0 file_606^M
+< -rw-r--r--         0 file_607^M
+< -rw-r--r--         0 file_610^M
+< -rw-r--r--         0 file_611^M
+< -rw-r--r--         0 file_612^M
+< -rw-r--r--         0 file_613^M
+< -rw-r--r--         0 file_614^M
+< -rw-r--r--         0 file_615^M
+< -rw-r--r--         0 file_616^M
+< -rw-r--r--         0 file_617^M
+< -rw-r--r--         0 file_620^M
+< -rw-r--r--         0 file_621^M
+< -rw-r--r--         0 file_622^M
+< -rw-r--r--         0 file_623^M
+< -rw-r--r--         0 file_624^M
+< -rw-r--r--         0 file_625^M
+< -rw-r--r--         0 file_626^M
+< -rw-r--r--         0 file_627^M
+< -rw-r--r--         0 file_630^M
+< -rw-r--r--         0 file_631^M
+< -rw-r--r--         0 file_632^M
+< -rw-r--r--         0 file_633^M
+< -rw-r--r--         0 file_634^M
+< -rw-r--r--         0 file_635^M
+< -rw-r--r--         0 file_636^M
+< -rw-r--r--         0 file_637^M
+< -rw-r--r--         0 file_640^M
+< -rw-r--r--         0 file_641^M
+< -rw-r--r--         0 file_642^M
+< -rw-r--r--         0 file_643^M
+< -rw-r--r--         0 file_644^M
+< -rw-r--r--         0 file_645^M
+< -rw-r--r--         0 file_646^M
+< -rw-r--r--         0 file_647^M
+< -rw-r--r--         0 file_650^M
+< -rw-r--r--         0 file_651^M
+< -rw-r--r--         0 file_652^M
+< -rw-r--r--         0 file_653^M
+< -rw-r--r--         0 file_654^M
+< -rw-r--r--         0 file_655^M
+< -rw-r--r--         0 file_656^M
+< -rw-r--r--         0 file_657^M
+< -rw-r--r--         0 file_660^M
+< -rw-r--r--         0 file_661^M
+< -rw-r--r--         0 file_662^M
+< -rw-r--r--         0 file_663^M
+< -rw-r--r--         0 file_664^M
+< -rw-r--r--         0 file_665^M
+< -rw-r--r--         0 file_666^M
+< -rw-r--r--         0 file_667^M
+< -rw-r--r--         0 file_670^M
+< -rw-r--r--         0 file_671^M
+< -rw-r--r--         0 file_672^M
+< -rw-r--r--         0 file_673^M
+< -rw-r--r--         0 file_674^M
+< -rw-r--r--         0 file_675^M
+< -rw-r--r--         0 file_676^M
+< -rw-r--r--         0 file_677^M
+< -rw-r--r--         0 file_680^M
+< -rw-r--r--         0 file_681^M
+< -rw-r--r--         0 file_682^M
+< -rw-r--r--         0 file_683^M
+< -rw-r--r--         0 file_684^M
+< -rw-r--r--         0 file_685^M
+< -rw-r--r--         0 file_686^M
+< -rw-r--r--         0 file_687^M
+< -rw-r--r--         0 file_690^M
+< -rw-r--r--         0 file_691^M
+< -rw-r--r--         0 file_692^M
+< -rw-r--r--         0 file_693^M
+< -rw-r--r--         0 file_694^M
+< -rw-r--r--         0 file_695^M
+< -rw-r--r--         0 file_696^M
+< -rw-r--r--         0 file_697^M
+< -rw-r--r--         0 file_700^M
+< -rw-r--r--         0 file_701^M
+< -rw-r--r--         0 file_702^M
+< -rw-r--r--         0 file_703^M
+< -rw-r--r--         0 file_704^M
+< -rw-r--r--         0 file_705^M
+< -rw-r--r--         0 file_706^M
+< -rw-r--r--         0 file_707^M
+< -rw-r--r--         0 file_710^M
+< -rw-r--r--         0 file_711^M
+< -rw-r--r--         0 file_712^M
+< -rw-r--r--         0 file_713^M
+< -rw-r--r--         0 file_714^M
+< -rw-r--r--         0 file_715^M
+< -rw-r--r--         0 file_716^M
+< -rw-r--r--         0 file_717^M
+< -rw-r--r--         0 file_720^M
+< -rw-r--r--         0 file_721^M
+< -rw-r--r--         0 file_722^M
+< -rw-r--r--         0 file_723^M
+< -rw-r--r--         0 file_724^M
+< -rw-r--r--         0 file_725^M
+< -rw-r--r--         0 file_726^M
+< -rw-r--r--         0 file_727^M
+< -rw-r--r--         0 file_730^M
+< -rw-r--r--         0 file_731^M
+< -rw-r--r--         0 file_732^M
+< -rw-r--r--         0 file_733^M
+< -rw-r--r--         0 file_734^M
+< -rw-r--r--         0 file_735^M
+< -rw-r--r--         0 file_736^M
+< -rw-r--r--         0 file_737^M
+< -rw-r--r--         0 file_740^M
+< -rw-r--r--         0 file_741^M
+< -rw-r--r--         0 file_742^M
+< -rw-r--r--         0 file_743^M
+< -rw-r--r--         0 file_744^M
+< -rw-r--r--         0 file_745^M
+< -rw-r--r--         0 file_746^M
+< -rw-r--r--         0 file_747^M
+< -rw-r--r--         0 file_750^M
+< -rw-r--r--         0 file_751^M
+< -rw-r--r--         0 file_752^M
+< -rw-r--r--         0 file_753^M
+< -rw-r--r--         0 file_754^M
+< -rw-r--r--         0 file_755^M
+< -rw-r--r--         0 file_756^M
+< -rw-r--r--         0 file_757^M
+< -rw-r--r--         0 file_760^M
+< -rw-r--r--         0 file_761^M
+< -rw-r--r--         0 file_762^M
+< -rw-r--r--         0 file_763^M
+< -rw-r--r--         0 file_764^M
+< -rw-r--r--         0 file_765^M
+< -rw-r--r--         0 file_766^M
+< -rw-r--r--         0 file_767^M
+< -rw-r--r--         0 file_770^M
+< -rw-r--r--         0 file_771^M
+< -rw-r--r--         0 file_772^M
+< -rw-r--r--         0 file_773^M
+< -rw-r--r--         0 file_774^M
+< -rw-r--r--         0 file_775^M
+< -rw-r--r--         0 file_776^M
+< -rw-r--r--         0 file_777^M
+< -rw-r--r--         0 file_780^M
+< -rw-r--r--         0 file_781^M
+< -rw-r--r--         0 file_782^M
+< -rw-r--r--         0 file_783^M
+< -rw-r--r--         0 file_784^M
+< -rw-r--r--         0 file_785^M
+< -rw-r--r--         0 file_786^M
+< -rw-r--r--         0 file_787^M
+< -rw-r--r--         0 file_790^M
+< -rw-r--r--         0 file_791^M
+< -rw-r--r--         0 file_792^M
+< -rw-r--r--         0 file_793^M
+< -rw-r--r--         0 file_794^M
+< -rw-r--r--         0 file_795^M
+< -rw-r--r--         0 file_796^M
+< -rw-r--r--         0 file_797^M
+< -rw-r--r--         0 file_800^M
+< -rw-r--r--         0 file_801^M
+< -rw-r--r--         0 file_802^M
+< -rw-r--r--         0 file_803^M
+< -rw-r--r--         0 file_804^M
+< -rw-r--r--         0 file_805^M
+< -rw-r--r--         0 file_806^M
+< -rw-r--r--         0 file_807^M
+< -rw-r--r--         0 file_810^M
+< -rw-r--r--         0 file_811^M
+< -rw-r--r--         0 file_812^M
+< -rw-r--r--         0 file_813^M
+< -rw-r--r--         0 file_814^M
+< -rw-r--r--         0 file_815^M
+< -rw-r--r--         0 file_816^M
+< -rw-r--r--         0 file_817^M
+< -rw-r--r--         0 file_820^M
+< -rw-r--r--         0 file_821^M
+< -rw-r--r--         0 file_822^M
+< -rw-r--r--         0 file_823^M
+< -rw-r--r--         0 file_824^M
+< -rw-r--r--         0 file_825^M
+< -rw-r--r--         0 file_826^M
+< -rw-r--r--         0 file_827^M
+< -rw-r--r--         0 file_830^M
+< -rw-r--r--         0 file_831^M
+< -rw-r--r--         0 file_832^M
+< -rw-r--r--         0 file_833^M
+< -rw-r--r--         0 file_834^M
+< -rw-r--r--         0 file_835^M
+< -rw-r--r--         0 file_836^M
+< -rw-r--r--         0 file_837^M
+< -rw-r--r--         0 file_840^M
+< -rw-r--r--         0 file_841^M
+< -rw-r--r--         0 file_842^M
+< -rw-r--r--         0 file_843^M
+< -rw-r--r--         0 file_844^M
+< -rw-r--r--         0 file_845^M
+< -rw-r--r--         0 file_846^M
+< -rw-r--r--         0 file_847^M
+< -rw-r--r--         0 file_850^M
+< -rw-r--r--         0 file_851^M
+< -rw-r--r--         0 file_852^M
+< -rw-r--r--         0 file_853^M
+< -rw-r--r--         0 file_854^M
+< -rw-r--r--         0 file_855^M
+< -rw-r--r--         0 file_856^M
+< -rw-r--r--         0 file_857^M
+< -rw-r--r--         0 file_860^M
+< -rw-r--r--         0 file_861^M
+< -rw-r--r--         0 file_862^M
+< -rw-r--r--         0 file_863^M
+< -rw-r--r--         0 file_864^M
+< -rw-r--r--         0 file_865^M
+< -rw-r--r--         0 file_866^M
+< -rw-r--r--         0 file_867^M
+< -rw-r--r--         0 file_870^M
+< -rw-r--r--         0 file_871^M
+< -rw-r--r--         0 file_872^M
+< -rw-r--r--         0 file_873^M
+< -rw-r--r--         0 file_874^M
+< -rw-r--r--         0 file_875^M
+< -rw-r--r--         0 file_876^M
+< -rw-r--r--         0 file_877^M
+< -rw-r--r--         0 file_880^M
+< -rw-r--r--         0 file_881^M
+< -rw-r--r--         0 file_882^M
+< -rw-r--r--         0 file_883^M
+< -rw-r--r--         0 file_884^M
+< -rw-r--r--         0 file_885^M
+< -rw-r--r--         0 file_886^M
+< -rw-r--r--         0 file_887^M
+< -rw-r--r--         0 file_890^M
+< -rw-r--r--         0 file_891^M
+< -rw-r--r--         0 file_892^M
+< -rw-r--r--         0 file_893^M
+< -rw-r--r--         0 file_894^M
+< -rw-r--r--         0 file_895^M
+< -rw-r--r--         0 file_896^M
+< -rw-r--r--         0 file_897^M
+< -rw-r--r--         0 file_900^M
+< -rw-r--r--         0 file_901^M
+< -rw-r--r--         0 file_902^M
+< -rw-r--r--         0 file_903^M
+< -rw-r--r--         0 file_904^M
+< -rw-r--r--         0 file_905^M
+< -rw-r--r--         0 file_906^M
+< -rw-r--r--         0 file_907^M
+< -rw-r--r--         0 file_910^M
+< -rw-r--r--         0 file_911^M
+< -rw-r--r--         0 file_912^M
+< -rw-r--r--         0 file_913^M
+< -rw-r--r--         0 file_914^M
+< -rw-r--r--         0 file_915^M
+< -rw-r--r--         0 file_916^M
+< -rw-r--r--         0 file_917^M
+< -rw-r--r--         0 file_920^M
+< -rw-r--r--         0 file_921^M
+< -rw-r--r--         0 file_922^M
+< -rw-r--r--         0 file_923^M
+< -rw-r--r--         0 file_924^M
+< -rw-r--r--         0 file_925^M
+< -rw-r--r--         0 file_926^M
+< -rw-r--r--         0 file_927^M
+< -rw-r--r--         0 file_930^M
+< -rw-r--r--         0 file_931^M
+< -rw-r--r--         0 file_932^M
+< -rw-r--r--         0 file_933^M
+< -rw-r--r--         0 file_934^M
+< -rw-r--r--         0 file_935^M
+< -rw-r--r--         0 file_936^M
+< -rw-r--r--         0 file_937^M
+< -rw-r--r--         0 file_940^M
+< -rw-r--r--         0 file_941^M
+< -rw-r--r--         0 file_942^M
+< -rw-r--r--         0 file_943^M
+< -rw-r--r--         0 file_944^M
+< -rw-r--r--         0 file_945^M
+< -rw-r--r--         0 file_946^M
+< -rw-r--r--         0 file_947^M
+< -rw-r--r--         0 file_950^M
+< -rw-r--r--       113 LastFile^M
+
+
+-----------------
+34) indirect directory (file):
+     minls /home/pn-cs453/Given/Asgn5/Images/BigIndirectDirs Level1/Level2/LastFile 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rw-r--r--       113 Level1/Level2/LastFile^M
+
+
+-----------------
+35) directories-deleted:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Deleted 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,8d0
+< /Deleted:^M
+< drwxr-xr-x       768 .^M
+< drwxrwxrwx       448 ..^M
+< -rwxr-xr-x       181 File-02^M
+< -rwxr-xr-x       181 File-04^M
+< -rwxr-xr-x       181 File-06^M
+< -rwxr-xr-x       181 File-08^M
+< -rwxr-xr-x       181 File-10^M
+
+
+-----------------
+36) directories-ok file:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Deleted/File-10 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-xr-x       181 /Deleted/File-10^M
+
+
+-----------------
+37) directories-deleted file:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Deleted/File-05 
+-----------------
+ This test was expected to fail, but reports success.
+ Perhaps a bad exit status?
+
+
+-----------------
+38) 1k blocks. dir.:
+     minls /home/pn-cs453/Given/Asgn5/Images/SmallBlocks--1k 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,5d0
+< /:^M
+< drwxrwxrwx       256 .^M
+< drwxrwxrwx       256 ..^M
+< drwxr-xr-x       256 DirOne^M
+< drwxr-xr-x       256 DirTwo^M
+
+
+-----------------
+39) 1k blocks. file.:
+     minls /home/pn-cs453/Given/Asgn5/Images/SmallBlocks--1k DirTwo/FileTwo  
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-xr-x     20596 DirTwo/FileTwo^M
+
+
+-----------------
+40) 16k zones. dir.:
+     minls /home/pn-cs453/Given/Asgn5/Images/BigZones-16k 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,5d0
+< /:^M
+< drwxrwxrwx       256 .^M
+< drwxrwxrwx       256 ..^M
+< drwxr-xr-x       256 DirOne^M
+< drwxr-xr-x       256 DirTwo^M
+
+
+-----------------
+41) 16k zones. file.:
+     minls /home/pn-cs453/Given/Asgn5/Images/BigZones-16k /DirOne/FileTwo 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-xr-x       181 /DirOne/FileTwo^M
+
+
+-----------------
+42) 64k zones. dir:
+     minls /home/pn-cs453/Given/Asgn5/Images/ReallyBigZones-64k 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1,5d0
+< /:^M
+< drwxrwxrwx       256 .^M
+< drwxrwxrwx       256 ..^M
+< drwxr-xr-x       256 DirOne^M
+< drwxr-xr-x       256 DirTwo^M
+
+
+-----------------
+43) 64k zones. file:
+     minls /home/pn-cs453/Given/Asgn5/Images/ReallyBigZones-64k DirTwo/FileOne 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-xr-x      6552 DirTwo/FileOne^M
+
+
+-----------------
+44) 64k zones. longpath:
+     minls /home/pn-cs453/Given/Asgn5/Images/ReallyBigZones-64k /./.././../DirTwo/FileOne 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-xr-x      6552 /./.././../DirTwo/FileOne^M
+
+
+-----------------
+45) Permissions 777:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Permissions/777 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxrwxrwx       181 /Permissions/777^M
+
+
+-----------------
+46) Permissions 755:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Permissions/755 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-xr-x       181 /Permissions/755^M
+
+
+-----------------
+47) Permissions 753:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Permissions/753 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< -rwxr-x-wx       181 /Permissions/753^M
+
+
+-----------------
+48) Permissions 357:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Permissions/357 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< --wxr-xrwx       181 /Permissions/357^M
+
+
+-----------------
+49) Permissions 000:
+     minls /home/pn-cs453/Given/Asgn5/Images/Files /Permissions/000 
+-----------------
+Test program output:
+Diffs: ( < Reference > Testfile ):
+1d0
+< ----------       181 /Permissions/000^M
+
+
+-----------------
+50) unpartitioned, w/filename:
+     minget /home/pn-cs453/Given/Asgn5/Images/TestImage /Hello 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32107) exited due to SIGTERM.^M
+
+
+-----------------
+51) partitioned, w/filename, p0:
+     minget -p 0 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+52) partitioned, w/filename, p1:
+     minget -p 1 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+53) partitioned, w/filename, p2:
+     minget -p 2 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+54) partitioned, w/filename, p3:
+     minget -p 3 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+57) subpart., w/filename:
+     minget -p 0 -s 2 /home/pn-cs453/Given/Asgn5/Images/HardDisk /home/pnico/Message 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+59) unpartitioned, w/filename:
+     minget /home/pn-cs453/Given/Asgn5/Images/TestImage /Hello /dev/stdout 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32201) exited due to SIGTERM.^M
+
+
+-----------------
+60) partitioned, w/filename, p0:
+     minget -p 0 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message /dev/stdout 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+61) partitioned, w/filename, p1:
+     minget -p 1 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message /dev/stdout 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+62) partitioned, w/filename, p2:
+     minget -p 2 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message /dev/stdout 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+63) partitioned, w/filename, p3:
+     minget -p 3 /home/pn-cs453/Given/Asgn5/Images/Partitioned /Message /dev/stdout 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+66) subpart., w/filename:
+     minget -p 0 -s 2 /home/pn-cs453/Given/Asgn5/Images/HardDisk /home/pnico/Message /dev/stdout 
+-----------------
+Program exited with bad status: 256
+
+Test program output:
+Error: invalid partition table.^M
+: Success^M
+
+
+-----------------
+71) directories:
+     minget /home/pn-cs453/Given/Asgn5/Images/Files /DeepPaths/a/b/c/d/e/i/j/k/Files/Message 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32285) exited due to SIGTERM.^M
+
+
+-----------------
+75) directories:
+     minget /home/pn-cs453/Given/Asgn5/Images/Files /DeepPaths/a/b/c/d/e/i/j/k/Files/Message /dev/stdout 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32331) exited due to SIGTERM.^M
+
+
+-----------------
+76) multi-zone directory (file):
+     minget /home/pn-cs453/Given/Asgn5/Images/BigDirectories LastFile 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32338) exited due to SIGTERM.^M
+
+
+-----------------
+77) multi-zone directory (file):
+     minget /home/pn-cs453/Given/Asgn5/Images/BigDirectories LastFile /dev/stdout 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32345) exited due to SIGTERM.^M
+
+
+-----------------
+78) indirect directory (file):
+     minget /home/pn-cs453/Given/Asgn5/Images/BigIndirectDirs Level1/Level2/LastFile 
+-----------------
+Program exited with bad status: 65280
+
+Test program output:
+Timed out.^M
+Child process (32358) exited due to SIGTERM.^M

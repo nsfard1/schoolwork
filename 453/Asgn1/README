@@ -1,0 +1,5 @@
+Assignment 1: Malloc
+
+Engineer: Nathan Sfard (nsfard)
+
+Instructions: Just run make to build an archive and a shared library in the lib and lib64 directories (lib has 32 bit versions and lib64 has 64 bit versions).
